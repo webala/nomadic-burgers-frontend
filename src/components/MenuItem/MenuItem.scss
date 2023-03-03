@@ -1,0 +1,35 @@
+.menu-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px 20px;
+
+   .info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      img {
+         width: 100px;
+         border-radius: 5px;
+      }
+
+      h1 {
+         font-size: 24px;
+      }
+   }
+
+   .actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .action {
+         color: yellowgreen;
+      }
+      
+      .price {
+         position: relative;
+         bottom: 2px;
+      }
+   }
+}

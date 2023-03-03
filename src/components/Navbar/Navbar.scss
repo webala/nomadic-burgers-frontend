@@ -1,0 +1,10 @@
+.navbar {
+   display: flex;
+   justify-content: flex-end;
+   padding: 20px 30px;
+
+   .icon {
+      font-size: 32px;
+      cursor: pointer;
+   }
+}

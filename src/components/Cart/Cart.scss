@@ -1,0 +1,70 @@
+/** @format */
+
+.close-btn {
+   width: 50px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   right: 30px;
+   top: 30px;
+   background: yellowgreen;
+   color: black;
+   // font-size: 25px;;
+}
+.cart {
+   height: 100vh;
+
+   @media (min-width: 768px) {
+      width: 90%;
+   }
+   width: 300px;
+   .order-summary {
+      padding: 30px 30px;
+
+      .order-total {
+         display: flex;
+         gap: 10px;
+
+         p {
+            font-weight: 700;
+         }
+
+         p:last-child {
+            color: yellowgreen;
+         }
+      }
+
+      .checkout {
+         .field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+
+            label {
+               margin-bottom: 10px;
+            }
+
+            input {
+               height: 30px;
+               padding: 2px 5px;
+            }
+         }
+
+         .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+
+            .cancel {
+               background: rgb(116, 9, 9);
+            }
+
+            .checkout {
+               background: yellowgreen;
+               color: black;
+            }
+         }
+      }
+   }
+}
