@@ -14,7 +14,6 @@ type MenuItemProps = {
 };
 
 function MenuItem({ setCart, itemId, quantity }: MenuItemProps) {
-   console.log("item id: ", itemId, "quantity: ", quantity);
 
    const fetchMenuItem = async (itemId: number) => {
       const response = await fetch(
@@ -45,7 +44,6 @@ function MenuItem({ setCart, itemId, quantity }: MenuItemProps) {
       return <div>Error</div>;
    }
 
-   console.log("menu item ", menuItem);
    const totalPrice = menuItem.price * quantity;
 
    const modifyCartItem = (action: string) => {

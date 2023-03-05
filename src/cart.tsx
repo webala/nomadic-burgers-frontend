@@ -48,7 +48,6 @@ export const modifyCartCookie = (action: string, productId: number) => {
          cart[productId] = { quantity: 1 };
       } else {
          cart[productId]["quantity"] += 1;
-         console.log('added:', cart[productId])
       }
    } else if (action === "remove") {
       cart[productId]["quantity"] -= 1;

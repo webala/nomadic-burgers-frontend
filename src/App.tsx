@@ -57,7 +57,6 @@ function App() {
 
    console.log("data: ", data);
    const handleAddToCart = (item: iData) => {
-      console.log("handle add to cart");
       modifyCartCookie("add", item.id);
       setCart(JSON.parse(getCookie("nomadic_burgers_cart") as string));
       toast({
