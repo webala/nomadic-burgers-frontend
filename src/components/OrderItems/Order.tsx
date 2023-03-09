@@ -1,10 +1,13 @@
 import axios from "axios";
 import React from "react";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import "./Order.scss";
-import { Spinner, Switch } from "@chakra-ui/react";
+import { Spinner, Switch, useToast } from "@chakra-ui/react";
 
 function Order({ order }) {
+	const queryClient = useQueryClient();
+	const toast = useToast();
+
 	const fetchOrderItems = async () => {
 		const response = await axios.get(
 			`http://localhost:8000/api/orderitems/${order.id}`
@@ -12,9 +15,38 @@ function Order({ order }) {
 		return response.data;
 	};
 
-  const setOrderComplete = useMutation(async () => {
-    
-  })
+	const setOrderCompleteMutation = useMutation(
+		async () => {
+			const data = {
+				id: order.id,
+				complete: !order.complete,
+			};
+
+			const response = await axios.put(
+				"http://localhost:8000/api/ordercomplete",
+				data,
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+
+			return response;
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries("orders");
+				toast({
+					title: "Success.",
+					description: "Order status changed.",
+					status: "success",
+					duration: 9000,
+					isClosable: true,
+				});
+			},
+		}
+	);
 
 	const { data, isLoading, isError, error, isSuccess } = useQuery(
 		["order-items", order.id],
@@ -29,7 +61,10 @@ function Order({ order }) {
 		<div>
 			<div>
 				<h1>Order #{order.id}</h1>
-        <Switch />
+				<Switch
+					defaultChecked={order.complete}
+					onChange={() => setOrderCompleteMutation.mutate()}
+				/>
 			</div>
 
 			<div>
